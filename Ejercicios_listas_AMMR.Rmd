@@ -1,0 +1,70 @@
+---
+title: "Ejercicios_Listas_AMMR"
+author: "Melissa Martínez"
+date: "2024-10-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ejercicios de listas
+
+1.  Crea una lista que contenga al menos cuatro tipos diferentes de datos(incluyendo al menos un vector, una matriz, y un data frame). Luego, escribe código para acceder a cada uno de estos elementos por su índice.
+
+### 
+
+```{r}
+lista_vmd <- list (
+  vector = sample(c(10:30), size = 10, replace = TRUE),
+  matriz = matrix(10:30, ncol = 2),
+  data = data.frame(
+    comida_rapida = c("hamburguesa", "pizza", "hot dog", "pollo frito" ),
+    refrescos = c("manzanita", "pepsi", "coca-cola", "jarritos"))
+)
+
+print(lista_vmd[[1]])
+
+print(lista_vmd[[2]])
+
+print(lista_vmd[[3]])
+
+```
+
+### 
+
+Añade un nuevo elemento a la compleja_lista que sea otra lista conteniendo información relevante a un experimento microbiológico (p.ej., fechas, resultados de crecimiento, tipo de medio de cultivo). Accede a un elemento específico dentro de esta lista anidada.
+
+```{r}
+edades_de_mayor_consumo <- c(10,15,20,25,30)
+append(lista_vmd, edades_de_mayor_consumo) 
+```
+
+### 
+
+Almacena datos de producción en experimentos de fermentación.
+
+Crea una lista fermentacion con 4 elementos, cada uno representando un experimento de fermentación. Cada elemento debe ser una lista con: Cepa, Condición, ProducciónEtanol. Encuentra la condición con la mayor producción de etanol.
+
+```{r}
+fermentacion <- list(
+  experimento1 = list(Cepa = "S.cerevisiae1", condicion = "Aerobica", produccion_etanol = 30),
+  experimento2 = list(Cepa = "S.cerevisiae2", condicion = "Anaerobica", produccion_etanol = 50),
+  experimento3 = list(Cepa = "S.cerevisiae3", condicion = "Microaerofílica", produccion_etanol = 40),
+  experimento4 = list(Cepa = "S.cerevisiae4", condicion = "Anaerobica con suplemento", produccion_etanol = 60)
+)
+
+mejor_produccion <- 0
+mejor_condicion <- ""
+
+for (experimento in fermentacion) {
+  if (experimento$produccion_etanol > mejor_produccion) {
+    mejor_produccion <- experimento$produccion_etanol
+    mejor_condicion <- experimento$condicion
+  }
+}
+
+print(mejor_produccion)
+print(mejor_condicion)
+```
